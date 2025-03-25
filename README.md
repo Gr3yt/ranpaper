@@ -17,4 +17,5 @@ Select ``` ranpaper -s <file> ``` lets you select a specific image from the wall
 I made this in 20 minutes as a fun project so dont expect much.
 
 > Change  wallpaper folder 📋
+
 > Set specific wallpaper ✅ 
