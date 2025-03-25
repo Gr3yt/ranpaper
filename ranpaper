@@ -6,5 +6,30 @@ CURRENT_WALL=$(hyprctl hyprpaper listloaded)
 # Get a random wallpaper that is not the current one
 WALLPAPER=$(find "$WALLPAPER_DIR" -type f ! -name "$(basename "$CURRENT_WALL")" | shuf -n 1)
 
-# Apply the selected wallpaper
-hyprctl hyprpaper reload ,"$WALLPAPER"
+# Get flags
+while getopts ":ls:" flag; do
+    case "${flag}" in
+        l)
+          echo ""
+          echo "-- List of files in wallpaper directory --"
+          echo ""
+          ls $WALLPAPER_DIR -1
+          ;;
+        s)
+          if [ -z "$(find ${WALLPAPER_DIR}/ -type f -name "${OPTARG}")" ]; then
+            echo "File not found. (${WALLPAPER_DIR}${OPTARG})"
+          else
+            hyprctl hyprpaper reload ,"$(find ${WALLPAPER_DIR}/ -type f -name "${OPTARG}")"
+          fi
+          ;; 
+        *) echo "Invalid flag"; exit 1;; # Fuck off i lost my mind writing these bullshit comments
+    esac
+done
+
+# If no flag provided
+if [[ $# -eq  0 ]]; then
+
+  # Apply the selected wallpaper
+  hyprctl hyprpaper reload ,"$WALLPAPER"
+
+fi
