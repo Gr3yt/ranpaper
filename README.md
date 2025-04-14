@@ -1,21 +1,30 @@
 # Ranpaper
 A wallpaper randomizer / selector for hyprpaper.
 
-# Usage
+## installation 
 
-Put PNG's at ``` ~/wallpapers ```
+### Script (recommended)
 
-Then run ``` ranpaper ```
+To download run this script ```/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Gr3yt/ranpaper/main/install.sh)"```
 
-# Flags
+### AUR
+
+Soon (hopefully)
+
+## Usage
+
+Put usable images that work with hyprpaper into the wallpaper directory (to get the directory run ```ranpaper -p```).
+Then run ``` ranpaper ``` to get a randomized wallpaper.
+
+## Flags
+
+To show all flags use ``` ranpaper -h ``` but here are basics
 
 List ``` ranpaper -l ``` lists all the files in the wallpaper folder.
 Select ``` ranpaper -s <file> ``` lets you select a specific image from the wallpaper folder as a wallpaper.
 
-# Future Ideas
+## Future Ideas
 
-I made this in 20 minutes as a fun project so dont expect much.
-
-> Change  wallpaper folder 📋
-
-> Set specific wallpaper ✅ 
+- [x] Change  wallpaper folder
+- [x] Set specific wallpaper
+- [ ] auto invalid file detection
