@@ -3,7 +3,7 @@
 set -e
 
 # CONFIG
-REPO_URL="https://raw.githubusercontent.com/Gr3yt/ranpaper/ranpaper/main"
+REPO_URL="https://raw.githubusercontent.com/Gr3yt/ranpaper/main"
 SCRIPT_NAME="ranpaper"
 INSTALL_PATH="/usr/local/bin/$SCRIPT_NAME"
 
