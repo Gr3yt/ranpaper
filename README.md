@@ -5,7 +5,10 @@ A wallpaper randomizer / selector for hyprpaper.
 
 ### Script (recommended)
 
-To download run this script ```/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Gr3yt/ranpaper/main/install.sh)"```
+To download run this script 
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Gr3yt/ranpaper/main/install.sh)"
+```
 
 ### AUR
 
