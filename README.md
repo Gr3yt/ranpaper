@@ -13,7 +13,7 @@ To install Ranpaper you can run this script
 
 You could also install Ranpaper from these official packages.
 
-- AUR - Soon (hopefully)
+- AUR - ```yay -S ranpaper```
 
 ## Uninstallation
 
