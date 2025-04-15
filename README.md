@@ -1,18 +1,33 @@
 # Ranpaper
-A wallpaper randomizer / selector for hyprpaper.
+The best wallpaper randomizer / selector for hyprpaper.
 
-## installation 
+## Installation 
 
 ### Script (recommended)
 
-To download run this script 
+To install Ranpaper you can run this script 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Gr3yt/ranpaper/main/install.sh)"
 ```
+### Package manager 
 
-### AUR
+You could also install Ranpaper from these official packages.
 
-Soon (hopefully)
+- AUR - Soon (hopefully)
+
+## Uninstallation
+
+### script
+
+To uninstall run this script
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Gr3yt/ranpaper/main/uninstall.sh)"
+```
+
+### Package manager
+
+If you installed with a package manager, you can get rid of it the usual way.
 
 ## Usage
 
