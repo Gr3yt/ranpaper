@@ -11,7 +11,7 @@ Ranpaper comes in multiple shapes and sizes.
 Open your terminal and paste this shell script to install ranpaper.
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/gr3yt/ranpaper/main/uninstall.sh | bash
+curl -fsSL https://raw.githubusercontent.com/gr3yt/ranpaper/main/install.sh | bash
 ```
 
 ### Package Managers
@@ -25,7 +25,7 @@ Coming Soon
 Open your terminal and paste this shell script to install ranpaper.
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/gr3yt/ranpaper/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/gr3yt/ranpaper/main/uninstall.sh | bash
 ```
 
 ### Package Managers
