@@ -55,3 +55,7 @@ The config file is written in the TOML format and its located at `~/.config/hypr
 #### Paths
 
 - `wallpaper-dir` the directory with all the wallpapers
+
+## Showcase
+
+![alt text](https://raw.githubusercontent.com/gr3yt/ranpaper/main/assets/imagelist.jpg "Images in list")
