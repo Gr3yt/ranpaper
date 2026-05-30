@@ -1,6 +1,6 @@
 # Ranpaper
 
-A easy to use hyprpaper utility designed to be easy to use with a minimalist style.
+A easy to use wallpaper utility designed to work with multiple daemons in a minimalist style.
 
 ## Installation
 
@@ -44,7 +44,7 @@ ranpaper -h
 
 ### Config
 
-The config file is written in the TOML format and its located at `~/.config/hypr/ranpaper.toml`
+The config file is written in the TOML format and its located at `~/.config/ranpaper.toml`
 
 #### General 
 
@@ -55,6 +55,14 @@ The config file is written in the TOML format and its located at `~/.config/hypr
 #### Paths
 
 - `wallpaper-dir` the directory with all the wallpapers
+
+#### Wallpaper
+
+- `wallpaper-daemon` the daemon selected to be used
+- `awww-transition-type` awww daemon transition type
+- `awww-transition-step` awww daemon step amount
+- `awww-transition-fps` awww daemon fps
+- `awww-transition-angle` awww daemon angle
 
 ## Showcase
 

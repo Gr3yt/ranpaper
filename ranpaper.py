@@ -6,6 +6,7 @@ import tomli_w
 import sys
 import random
 import base64, sys
+import subprocess
 from PIL import Image
 
 def show_kitty(path, width=40):
@@ -26,7 +27,7 @@ def show_kitty(path, width=40):
   sys.stdout.write("\n")
   sys.stdout.flush()
 
-CONFIG_PATH = os.path.expanduser("~/.config/hypr/ranpaper.toml")
+CONFIG_PATH = os.path.expanduser("~/.config/ranpaper.toml")
 
 DEFAULT_CONFIG = {
   "general": {
@@ -36,6 +37,13 @@ DEFAULT_CONFIG = {
   },
   "paths": {
     "wallpaper-dir": "~/wallpapers"
+  },
+  "wallpaper": {
+    "wallpaper-daemon": "hyprpaper",
+    "awww-transition-type": "grow",
+    "awww-transition-step": 150,
+    "awww-transition-fps": 144,
+    "awww-transition-angle": 30
   }
 }
 
@@ -57,11 +65,93 @@ def save_config(cfg):
 
 CFG = load_config()
 
+def changewallpaper(wallpaperp):
+
+  if CFG["wallpaper"]["wallpaper-daemon"] == "awww":
+    
+    if "-a-help" in sys.argv:
+      print("""
+--------------------------------------------------
+AWWW flags - recomended to set these in the config
+--------------------------------------------------
+
+ format
+ <ranpaper-flag> ==> <awww=flag>
+
+ -a-type ==> --transition-type
+ -a-step ==> --transition-step
+ -a-fps ==> --transition-fps
+ -a-angle ==> --transition-angle
+      """)
+      return
+    if "-a-type" in sys.argv:
+      idx = sys.argv.index("-a-type")
+      a_type = sys.argv[idx + 1]
+    else:
+      a_type = CFG["wallpaper"]["awww-transition-type"]
+
+    if "-a-step" in sys.argv:
+      idx = sys.argv.index("-a-step")
+      a_step = sys.argv[idx + 1]
+    else:
+      a_step = CFG["wallpaper"]["awww-transition-step"]
+
+    if "-a-fps" in sys.argv:
+      idx = sys.argv.index("-a-fps")
+      a_fps = sys.argv[idx + 1]
+    else:
+      a_fps = CFG["wallpaper"]["awww-transition-fps"]
+
+    if "-a-angle" in sys.argv:
+      idx = sys.argv.index("-a-angle")
+      a_angle = sys.argv[idx + 1]
+    else:
+      a_angle = CFG["wallpaper"]["awww-transition-angle"]
+
+    try:
+      subprocess.run(
+        ["awww", "img", wallpaperp,
+         "--transition-type", a_type,
+         "--transition-step", str(a_step),
+         "--transition-fps", str(a_fps),
+         "--transition-angle", str(a_angle)],
+        check=True,
+        capture_output=True,
+        text=True
+      )
+      print("Set wallaper with AWWW")
+    except subprocess.CalledProcessError as e:
+      print("ERROR -", e.stderr)
+      print("Failed to set wallpeper with AWWW")
+      print("Is awww daemon running?")
+
+  elif CFG["wallpaper"]["wallpaper-daemon"] == "hyprpaper":
+    try:
+      subprocess.run(
+        ["hyprctl", "hyprpaper", "wallpaper", ",", wallpaperp],
+        check=True,
+        capture_output=True,
+        text=True
+      )
+      print("Set wallpaper with hyprpaper")
+    except subprocess.CalledProcessError as e:
+      print("ERROR -", e.stderr)
+      print("Failed to set wallpeper with hyprpaper")
+      print("Is hyprpaper running?")
+  else:
+    print("Invalid wallpaper daemon set")
+    print("Only supported daemons in this version is:")
+    print("hyprpaper")
+    print("awww")
+    print("\nIf you would like to request a new daemon option please request it via github issues.")
+
+
 def app():
   if CFG["general"]["auto-generated"] == 1:
     print("Your config is auto generated!")
     print("\nPlease go to", CONFIG_PATH, "and configure your setup")
     print("Once setup is finished set 'auto-generated' to 0")
+    print("\nURGENT - Default daemon is set to hyprpaper. Please change this in the config in the value 'wallpaper-daemon'")
     return
 
   wallpaper_dir = os.path.expanduser(CFG["paths"]["wallpaper-dir"])
@@ -85,7 +175,7 @@ def app():
     sel_wallpaper = sys.argv[idx + 1]
     wallpaper_path = f"{wallpaper_dir}/{sel_wallpaper}"
     if os.path.exists(wallpaper_path):
-      os.system(f"hyprctl hyprpaper wallpaper , {wallpaper_path}")
+      changewallpaper(wallpaper_path)
       return
 
     print("\n Error! \n")
@@ -98,7 +188,7 @@ def app():
     sel_wallpaper = sys.argv[idx + 1]
     wallpaper_path = os.path.expanduser(sel_wallpaper)
     if os.path.exists(wallpaper_path):
-      os.system(f"hyprctl hyprpaper wallpaper , {wallpaper_path}")
+      changewallpaper(wallpaper_path)
       return
 
     print("\n Error! \n")
@@ -118,7 +208,10 @@ def app():
 
  -- ranpaper -l
   - lists wallpapers in the selected wallpaper directory
-  
+
+ -- ranpaper -a-help
+  - shows help with setting awww flags via ranpaper
+
  -- ranpaper -s <image>
   - selects the image entered to use as a wallpaper from the wallpaper directory
   - eg. ranpaper -s city.jpg
@@ -132,7 +225,7 @@ def app():
 
   sel_wallpaper = wallpapers[random.randint(0, len(wallpapers) - 1)]
   wallpaper_path = f"{wallpaper_dir}/{sel_wallpaper}"
-  os.system(f"hyprctl hyprpaper wallpaper , {wallpaper_path}")
+  changewallpaper(wallpaper_path)
 
 
 
